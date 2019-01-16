@@ -1,0 +1,105 @@
+save number
+run date
+backbone
+compile inputs
+fit_generator inputs
+important metrics
+other notes
+-----
+N/A
+2018-11-13
+xception (transfer learning)
+Loss = CCE; Opt = SGD; LR = 0.00005; momentum = 0.9; decay = 0.00005/100;
+batch_size = 5; steps_per_epoch = 40; epochs = 100;
+loss = 0.6931; %Delam = 710; val_loss = 0.6931; val_%Delam = 458;
+Model seems to get stuck in local minimum at loss = 0.6931 (~epoch 22)
+** ERROR IN DATASET FOR THIS TRAIN
+-----
+Training 1
+2018-11-13
+xception (transfer learning)
+Loss = CCE; Opt = SGD; LR = 0.00001; momentum = 0.9; decay = 0.00001/100;
+batch_size = 5; steps_per_epoch = 40; epochs = 100;
+loss = 0.5854; %Delam = 30.9; val_loss = 0.5735; val_%Delam = 45.7;
+See image training_1.png; results seem reasonable but could have trained longer
+** ERROR IN DATASET FOR THIS TRAIN
+-----
+N/A
+2018-11-13
+xception (transfer learning)
+Loss = CCE; Opt = SGD; LR = 0.00001; momentum = 0.9; decay = 0.00001/100;
+batch_size = 5; steps_per_epoch = 40; epochs = 100;
+loss = 0.6028; %Delam = 65.0; val_loss = 0.8775; val_%Delam = 6.71;
+Seemed to overfit to the training set
+Unsure why validation was stuck at low delam %
+-----
+Training 2
+2018-11-13
+mobilenet-v2
+Loss = CCE; Opt = SGD; LR = 0.00001; momentum = 0.9; decay = 0.00001/100;
+batch_size = 5; steps_per_epoch = 40; epochs = 100;
+loss = 0.4217; %Delam = 63.9; val_loss = 1.0740; val_%Delam = 37.1;
+Overfit to the training set (see training_2.png)
+Ran with less augmentation, may be reason for overfitting
+-----
+N/A
+2018-11-14
+mobilenet-v2
+Loss = CCE; Opt = SGD; LR = 0.00001; momentum = 0.9; decay = 0.00001/500;
+batch_size = 5; steps_per_epoch = 40; epochs = 500;
+loss = 0.3045; %Delam = 11.1; val_loss = 0.9630; val_%Delam = 13.4;
+Overfit to training set, but unsure why. Appears that network is not learning
+-----
+Training 3
+2018-11-14
+xception
+Loss = CCE; Opt = SGD; LR = 0.00001; momentum = 0.9; decay = 0.00001/100;
+batch_size = 5; steps_per_epoch = 40; epochs = 100;
+loss = 0.4725; %Delam = 40.8; val_loss = 0.7668; val_%Delam = 19.3;
+Overfit to training set, but unsure why. Appears that network is not learning
+-----
+----- Added softmax to last layer of output
+-----
+Training 4
+2018-11-16
+mobilenet-v2
+Loss = CCE; Opt = SGD; LR = 0.0005; momentum = 0.9; decay = 0.0005/500;
+batch_size = 2; steps_per_epoch = 100; epochs = 100;
+loss = 0.1630; mIOU = 0.437; val_loss = 0.5475; val_mIOU = 0.0412;
+Far better results using softmax layer
+issues with bad data (i.e. ones where delam difficult to see for even human)
+retry with histogram equalized images
+-----
+Training 5
+2018-11-19
+mobilenet-v2
+Loss = CCE; Opt = SGD; LR = 0.001; momentum = 0.9; decay = 0.001/500;
+batch_size = 2; steps_per_epoch = 100; epochs = 100;
+loss = 0.1017; mIOU = 0.5652; val_loss = 0.7209; val_mIOU = 0.0389
+ran with histeq images, doesn't seem to be helpful
+bad data is bad data, perhaps try adding more negative examples to training
+(i.e. add examples of no delam)
+-----
+Training 5
+2018-11-19
+mobilenet-v2
+Loss = CCE; Opt = SGD; LR = 0.001; momentum = 0.9; decay = 0.001/500;
+batch_size = 2; steps_per_epoch = 100; epochs = 100;
+????
+run without 001669 and 001670 in validation set (seem to be outliers)
+-----
+Training 6 (sigmoid)
+2018-11-21
+mobilenet-v2
+Loss = CCE; Opt = SGD; LR = 0.005; momentum = 0.9; decay = 0.005/500;
+batch_size = 4; steps_per_epoch = 400/4=100; epochs = 500;
+loss = 0.0182; mIOU = 0.7604; val_loss = 0.0163; val_mIOU = 0.7270
+Trained on 400 images, with 50 for validation set. Results are excellent
+-----
+Training 7 (softmax)
+2018-11-23
+mobilenet-v2
+Loss = CCE; Opt = SGD; LR = 0.005; momentum = 0.9; decay = 0.005/500;
+batch_size = 4; steps_per_epoch = 400/4=100; epochs = 500;
+loss = 0.0184; mIOU = 0.7633; val_loss = 0.0180; val_mIOU = 0.6704
+Trained on 400 images, with 50 for validation set. Results are excellent

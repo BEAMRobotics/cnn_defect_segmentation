@@ -1,0 +1,16 @@
+save number
+run date
+backbone
+compile inputs
+fit_generator inputs
+important metrics
+other notes
+-----
+Training 1 (softmax)
+2018-11-27
+mobilenet-v2
+Loss = CCE; Opt = SGD; LR = 0.005; momentum = 0.9; decay = 0.005/500;
+batch_size = 4; steps_per_epoch = 100; epochs = 500;
+loss = 0.0166; mIOU = 0.7106; val_loss = 0.0560; val_mIOU = 0.7946
+May have made mistake with steps per epoch, but doesn't really matter. Should 
+still rerun if time permits

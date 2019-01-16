@@ -1,0 +1,14 @@
+save number
+run date
+backbone
+compile inputs
+fit_generator inputs
+important metrics
+other notes
+-----
+Gen Training 1 (softmax)
+2018-12-07
+mobilenet-v2
+Loss = CCE; Opt = SGD; LR = 0.005; momentum = 0.9; decay = 0.005/200;
+batch_size = 4; steps_per_epoch = 207; epochs = 500;
+loss = 0.0239; mIOU = 0.7262; val_loss = 0.0120; val_mIOU = 0.4045;
